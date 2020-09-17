@@ -28,7 +28,7 @@ urlpatterns = [
     path('clientes/', include(clientes_urls)),
     path('vendas/', include(vendas_urls)),
     path('produtos/', include(produtos_urls)),
-    path('login/', auth_views.login, name='login'),
+    path('accounts/login/', auth_views.LoginView.as_view()),
     # path('jet/', include('jet.urls', 'jet')),
     # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     # path('grappelli/', include('grappelli.urls')),

@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db.models.query_utils import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
@@ -18,7 +19,15 @@ from .models import Person
 
 @login_required
 def persons_list(request):
-    persons = Person.objects.all()
+    termo_busca = request.GET.get('pesquisa', None)
+
+    if termo_busca:
+        persons = Person.objects.filter(
+            Q(first_name__contains=termo_busca) |
+            Q(last_name__contains=termo_busca)
+        )
+    else:
+        persons = Person.objects.all()
 
     return render(
         request, 'person.html', {'persons': persons})
