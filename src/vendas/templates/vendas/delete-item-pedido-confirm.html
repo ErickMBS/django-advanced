@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar item do pedido</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja deletar o item {{ item_pedido }}?</h1>
+    <form action="{% url 'delete-item-pedido' item_pedido.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+    </form>
+</body>
+</html>

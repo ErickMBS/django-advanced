@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} Administracao {% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col">
+
+        </div>
+
+        <div class="col-6">
+            <h3>Listagem de clientes</h3>
+            <ul class="list-group">
+                {% for person in persons %}
+                    <li class="list-group-item">
+                        <a href="{% url 'persons_update' person.id %}">{{ person.nome_completo|title }}</a>
+                        <a href="{% url 'persons_delete' person.id %}" class="trash-item">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                {% empty %}
+                    <li>Desculpe, nao existem clientes cadastrados</li>
+                {% endfor %}
+            </ul>
+
+            <br>
+
+            <a href="{% url 'person_new' %}" class="btn btn-primary"> Novo cliente</a>
+
+        </div>
+
+        <div class="col">
+            {% if user.is_authenticated %}
+                <p>{{ request.session.message }}
+                    <a href="{% url 'logout' %}">
+                        <span class="badge badge-dark">Sair</span>
+                    </a>
+                </p>
+            {% else %}
+                Nao foi...
+            {% endif %}
+        </div>
+    </div>
+
+    {% filter force_escape|lower %}
+        This text will be HTML-escaped, and will appear in all lowercase.
+    {% endfilter %}
+
+    {% if persons|length >= 20 %}
+       Voce ja tem mais que 20 clientes
+    {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

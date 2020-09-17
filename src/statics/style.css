@@ -1,0 +1,18 @@
+.trash-item {
+    float: right;
+}
+
+#hora_server {
+    float: right;
+    width: 30%;
+
+}
+
+.foot_message {
+    float: left;
+    width: 70%;
+}
+
+body {
+    text-align: left;
+}

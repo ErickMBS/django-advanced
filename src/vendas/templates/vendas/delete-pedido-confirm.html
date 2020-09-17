@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Venda</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja deletar o pedido: {{ venda }}?</h1>
+    <form action="{% url 'delete-pedido' venda.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+    </form>
+</body>
+</html>
